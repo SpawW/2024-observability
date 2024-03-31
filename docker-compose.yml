@@ -1,0 +1,30 @@
+services:
+  web: 
+    image: kubedevio/rotten-potatoes:v1
+    ports:
+      - "8080:5000"
+    networks:
+      - observability
+    depends_on:
+      - mongodb
+    environment:
+      MONGODB_DB: "admin"
+      MONGODB_HOST: "mongodb"
+      MONGODB_PORT: "27017"
+      MONGODB_USERNAME: "mongouser"
+      MONGODB_PASSWORD: "m0ngopwd!"
+  mongodb:
+    image: mongo:7.0
+    volumes:
+      - db_mongo:/data/db
+    networks:
+      - observability
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: "mongouser"
+      MONGO_INITDB_ROOT_PASSWORD: "m0ngopwd!"
+
+volumes:
+  db_mongo:
+networks:
+  observability:
+    driver: bridge
