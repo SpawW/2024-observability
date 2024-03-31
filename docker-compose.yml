@@ -24,6 +24,13 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: "mongouser"
       MONGO_INITDB_ROOT_PASSWORD: "m0ngopwd!"
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.47.2
+    ports:
+      - "9090:9090"
+    networks:
+      - observability
 
 volumes:
   db_mongo:
