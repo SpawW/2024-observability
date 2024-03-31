@@ -35,4 +35,10 @@ docker run hello-world
 
 ```
 git clone -b install_docker https://github.com/SpawW/2024-observability.git
+
+cd 2024-observability
+
+docker compose up -d
+
 ```
+

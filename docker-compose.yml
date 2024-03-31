@@ -1,5 +1,6 @@
 services:
   web: 
+    container_name: web
     image: kubedevio/rotten-potatoes:v1
     ports:
       - "8080:5000"
@@ -14,6 +15,7 @@ services:
       MONGODB_USERNAME: "mongouser"
       MONGODB_PASSWORD: "m0ngopwd!"
   mongodb:
+    container_name: mongodb
     image: mongo:7.0
     volumes:
       - db_mongo:/data/db
