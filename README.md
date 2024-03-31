@@ -34,5 +34,5 @@ docker run hello-world
 ### Clone o repositório
 
 ```
-git clone -b install_docker git@github.com:SpawW/2024-observability.git
+git clone -b install_docker https://github.com/SpawW/2024-observability.git
 ```
