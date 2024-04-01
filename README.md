@@ -34,7 +34,7 @@ docker run hello-world
 ### Clone o repositório
 
 ```
-git clone -b install_docker https://github.com/SpawW/2024-observability.git
+git clone -b install_prometheus https://github.com/SpawW/2024-observability.git
 
 cd 2024-observability
 
@@ -42,3 +42,7 @@ docker compose up -d
 
 ```
 
+### Configure o prometheus para buscar informações no rotten potatoes
+- Altere o docker-compose.yml para mapear o arquivo prometheus.yml como um volume e adicione as configurações do que coletar
+- Adicione o auto monitoramento do prometheus, teste
+- Adicione o monitoramento do rotten potatoes, teste
