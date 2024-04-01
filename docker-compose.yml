@@ -31,6 +31,8 @@ services:
       - "9090:9090"
     networks:
       - observability
+    volumes:
+      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
 
 volumes:
   db_mongo:
