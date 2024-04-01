@@ -39,7 +39,7 @@ services:
   grafana:
     image: grafana/grafana:10.2.2
     ports:
-      - "10000:3000"
+      - "9000:3000"
     networks:
       - observability
 
