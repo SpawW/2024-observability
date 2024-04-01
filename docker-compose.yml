@@ -34,7 +34,9 @@ services:
     volumes:
       - ./prometheus.yml:/etc/prometheus/prometheus.yml
     extra_hosts:
-      host.docker.internal: 172.18.0.1
+      host.docker.internal: ${DOCKER_HOST}
+    env_file:
+      - .env
 
   grafana:
     container_name: grafana-2024
