@@ -42,6 +42,12 @@ docker compose up -d
 
 ```
 
+Para forçar pegar esta branch usando o .env criado anteriormente...
+
+```
+rm -rf 2024-observability/ ; git clone -b install_grafana https://github.com/SpawW/2024-observability.git ; cd 2024-observability/ ; ln -s ../.env
+```
+
 ### Configure o prometheus para buscar informações no rotten potatoes e do docker
 - Altere o docker-compose.yml para mapear o arquivo prometheus.yml como um volume e adicione as configurações do que coletar
 - Adicione o auto monitoramento do prometheus, teste
@@ -89,6 +95,7 @@ https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/
 ### Instale o dashboard padrão de docker
 
 https://grafana.com/grafana/dashboards/9621-docker-registry/
+
 
 
 ### Instale o dashboard padrão do flask
