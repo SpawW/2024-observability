@@ -32,7 +32,7 @@ services:
     networks:
       - observability
     volumes:
-      - ./prometheus.yaml:/etc/prometheus/prometheus.yml
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
 
 volumes:
   db_mongo:
