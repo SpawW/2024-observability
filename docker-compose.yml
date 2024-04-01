@@ -36,6 +36,13 @@ services:
     extra_hosts:
       host.docker.internal: 172.18.0.1
 
+  grafana:
+    image: grafana/grafana:10.2.2
+    ports:
+      - "3000:3000"
+    networks:
+      - observability
+
 volumes:
   db_mongo:
 networks:
