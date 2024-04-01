@@ -42,13 +42,19 @@ docker compose up -d
 
 ```
 
-### Configure o prometheus para buscar informações no rotten potatoes
+### Configure o prometheus para buscar informações no rotten potatoes e do docker
 - Altere o docker-compose.yml para mapear o arquivo prometheus.yml como um volume e adicione as configurações do que coletar
 - Adicione o auto monitoramento do prometheus, teste
 - Adicione o monitoramento do rotten potatoes, teste
+- Adicione o monitoramento do docker usando o ip EXTERNO
 
 ### Altere o deaemon do docker do docker
-vi /etc/docker/daemon.json
+
+```
+sudo vi /etc/docker/daemon.json
+
+```
+
 
 ```
 {
@@ -58,11 +64,32 @@ vi /etc/docker/daemon.json
 ```
 
 ### Reiniciar o docker 
+
+```
 sudo systemctl restart docker
+```
 
 ### Recuperar o IP do contêiner do prometheus
+
+```
 docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' prometheus
+```
 
 ### Recuperar o IP do gateway Docker associado ao contêiner
-docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' prometheus
 
+```
+docker inspect -f '{{range .NetworkSettings.Networks}}{{.Gateway}}{{end}}' prometheus
+```
+
+### Instale o dashboard padrão de prometheus
+
+https://grafana.com/grafana/dashboards/3662-prometheus-2-0-overview/
+
+
+### Instale o dashboard padrão de docker
+
+https://grafana.com/grafana/dashboards/9621-docker-registry/
+
+
+### Instale o dashboard padrão do flask
+https://github.com/rycus86/prometheus_flask_exporter
