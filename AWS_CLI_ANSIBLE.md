@@ -104,3 +104,6 @@ ansible-playbook install-docker.yml
 Teste o docker... falhou?... corrija !!!
 Falhou ainda? Qual ação é necessária? O que você precisou fazer para solucionar?
 
+Suba o ambiente usando o docker compose
+
+
