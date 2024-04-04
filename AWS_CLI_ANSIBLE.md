@@ -77,7 +77,7 @@ ec2_public_ip=$(aws ec2 describe-instances --instance-ids $ec2_instance_id --que
 ### Acesse o EC2 criado
 
 ```
-ssh -i .ssh/labuser.pem ubuntu@$ec2_public_ip
+ssh -i .ssh/labsuser.pem ubuntu@$ec2_public_ip
 
 ```
 
