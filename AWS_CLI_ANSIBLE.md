@@ -95,9 +95,18 @@ sudo apt install -y ansible
 
 ```
 
+#### Clona o repo
+
+```
+git clone -b ansible_version https://github.com/SpawW/2024-observability.git
+
+cd 2024-observability
+
+```
 #### Instalar o docker usando o ansible 
 
 ```
+
 ansible-playbook install-docker.yml
 ```
 
