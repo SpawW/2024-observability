@@ -1,0 +1,65 @@
+---
+- name: Configurar serviços usando módulos nativos do Ansible
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Criar a rede observability
+      docker_network:
+        name: observability
+        driver: bridge
+
+    - name: Iniciar o container MongoDB
+      docker_container:
+        name: mongodb-2024
+        image: mongo:7.0
+        volumes:
+          - db_mongo:/data/db
+        networks:
+          - name: observability
+        env:
+          MONGO_INITDB_ROOT_USERNAME: "mongouser"
+          MONGO_INITDB_ROOT_PASSWORD: "m0ngopwd!"
+
+    - set_fact:
+        server_host_ip: "{'host.docker.internal':'{{DOCKER_HOST}}'}"
+
+    - name: Iniciar o container Prometheus
+      docker_container:
+        name: prometheus-2024
+        image: prom/prometheus:v2.47.2
+        ports:
+          - "9090:9090"
+        networks:
+          - name: observability
+        volumes:
+          - ./prometheus.yml:/etc/prometheus/prometheus.yml
+        extra_hosts: "{{server_host_ip}}"
+          # host.docker.internal: "{{ ansible_default_ipv4.address }}"
+        env_file:
+          - .env
+
+    - name: Iniciar o container Grafana
+      docker_container:
+        name: grafana-2024
+        image: grafana/grafana:10.2.2
+        ports:
+          - "9000:3000"
+        networks:
+          - observability
+
+    - name: Iniciar o container Web
+      docker_container:
+        name: web-2024
+        image: kubedevio/rotten-potatoes:v1
+        ports:
+          - "8080:5000"
+        networks:
+          - observability
+        depends_on:
+          - mongodb
+        env:
+          MONGODB_DB: "admin"
+          MONGODB_HOST: "mongodb-2024"
+          MONGODB_PORT: "27017"
+          MONGODB_USERNAME: "mongouser"
+          MONGODB_PASSWORD: "m0ngopwd!"
