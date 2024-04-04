@@ -52,7 +52,7 @@ ID de chave SSH : vockey
 ```
 
 ec2_name="server01"
-aws ec2 run-instances --image-id ami-080e1f13689e07408 --instance-type t2.micro --key-name $nome_chave --security-groups $sec_group_name --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$ec2_name}]" > resultado_ec2.json
+aws ec2 run-instances --image-id ami-080e1f13689e07408 --instance-type t2.micro --key-name $key_name --security-groups $sec_group_name --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=$ec2_name}]" > resultado_ec2.json
 
 ```
 
